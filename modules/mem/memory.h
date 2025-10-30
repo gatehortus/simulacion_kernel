@@ -1,4 +1,3 @@
-@'
 #pragma once
 #include <vector>
 #include <queue>
@@ -20,6 +19,5 @@ public:
     MemoryManager(int f=4);
     void accessPage(int pid, int page);
     void showStatus();
-    std::vector<std::pair<int,int>> getStatsRows(){ return stats_rows; }
+    std::vector<std::pair<int,int>> getStatsRows() { return stats_rows; }
 };
-'@ | Out-File -Encoding utf8 modules\mem\memory.h

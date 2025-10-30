@@ -1,4 +1,4 @@
-@'
+
 #pragma once
 #include <string>
 #include <vector>
@@ -14,4 +14,4 @@ struct PCB {
     int finish_time = 0;
     int waiting_time = 0;
 };
-'@ | Out-File -Encoding utf8 modules\cpu\pcb.h
+

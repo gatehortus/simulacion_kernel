@@ -1,4 +1,4 @@
-@'
+
 #include "memory.h"
 #include <iostream>
 #include <algorithm>
@@ -38,4 +38,4 @@ void MemoryManager::showStatus() {
     double hit_rate = accesses? (1.0 - (double)faults / accesses) : 0.0;
     std::cout << "Accesses="<<accesses<<" Faults="<<faults<<" HitRate="<<hit_rate<<"\n";
 }
-'@ | Out-File -Encoding utf8 modules\mem\memory.cpp
+

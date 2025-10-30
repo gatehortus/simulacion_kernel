@@ -1,4 +1,4 @@
-@'
+
 #pragma once
 #include "pcb.h"
 #include <queue>
@@ -72,4 +72,4 @@ public:
         if(!found) std::cout<<"PID no encontrado en READY\n";
     }
 };
-'@ | Out-File -Encoding utf8 modules\cpu\scheduler.h
+

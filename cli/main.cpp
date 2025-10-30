@@ -1,15 +1,15 @@
-@'
+
 #include <iostream>
 #include <string>
 #include <sstream>
 #include <vector>
 #include <algorithm>
 #include <fstream>
-#include "modules/cpu/pcb.h"
-#include "modules/cpu/scheduler.h"
-#include "modules/mem/memory.h"
-#include "modules/sync/sync.h"
-#include "modules/io/io.h"
+#include "cpu/pcb.h"
+#include "cpu/scheduler.h"
+#include "mem/memory.h"
+#include "sync/sync.h"
+#include "io/io.h"
 
 
 Scheduler scheduler;
@@ -95,4 +95,4 @@ int main() {
     }
     return 0;
 }
-'@ | Out-File -Encoding utf8 main.cpp
+
