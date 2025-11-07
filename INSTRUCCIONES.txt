@@ -1,0 +1,182 @@
+# INSTRUCCIONES DE COMPILACION Y EJECUCION
+# Simulador de Nucleo de Sistema Operativo
+
+## ESTRUCTURA DEL PROYECTO
+
+proyecto_so/
+├── include/              # Archivos de cabecera (.h)
+│   ├── Process.h
+│   ├── Memory.h
+│   ├── Synchronization.h
+│   ├── Disk.h
+│   └── IO.h
+├── src/                  # Archivos fuente (.cpp)
+│   ├── Process.cpp
+│   ├── Memory.cpp
+│   ├── Synchronization.cpp
+│   ├── Disk.cpp
+│   ├── IO.cpp
+│   └── main.cpp
+├── scripts/              # Scripts de prueba
+│   ├── proc_test.txt
+│   ├── mem_test.txt
+│   └── disk_test.txt
+├── Makefile
+├── README.md
+└── create_report.js      # Generador del informe (ya ejecutado)
+
+## PASO 1: COMPILACION
+
+Opcion A - Usando Makefile (RECOMENDADO):
+```bash
+cd proyecto_so
+make
+```
+
+Opcion B - Compilacion manual:
+```bash
+cd proyecto_so
+g++ -std=c++17 -pthread -I./include -o os_simulator src/*.cpp
+```
+
+## PASO 2: EJECUCION
+
+```bash
+./os_simulator
+```
+
+O con make:
+```bash
+make run
+```
+
+## PASO 3: USO DEL PROGRAMA
+
+Al ejecutar aparece un menu principal con 6 opciones:
+
+### OPCION 1: GESTION DE PROCESOS
+Submenus:
+1. Round Robin - Ejecuta planificador con quantum = 2
+2. SJF - Ejecuta Shortest Job First
+3. Cargar desde script - Lee archivo proc_test.txt
+
+Formato del archivo de procesos:
+```
+Nombre BurstTime ArrivalTime Priority
+P1 5 0 1
+P2 3 1 2
+```
+
+### OPCION 2: MEMORIA VIRTUAL
+Submenus:
+1. LRU - Least Recently Used
+2. FIFO - First In First Out
+3. Working Set - Algoritmo avanzado
+4. Comparar - Ejecuta los 3 y muestra estadisticas
+5. Cargar desde script - Lee mem_test.txt
+
+Al seleccionar, pide numero de marcos (default: 3)
+
+Formato del archivo de memoria:
+```
+1 2 3 4 1 2 5 1 2 3 4 5
+```
+
+### OPCION 3: SINCRONIZACION
+1. Productor-Consumidor - Con 2 productores y 2 consumidores
+2. Cena de los Filosofos - 5 filosofos sin deadlock
+
+### OPCION 4: PLANIFICACION DE DISCO
+Submenus:
+1. FCFS
+2. SSTF
+3. SCAN
+4. Comparar - Muestra movimiento total de cada uno
+5. Cargar desde script - Lee disk_test.txt
+
+Formato del archivo de disco:
+```
+53
+98 183 37 122 14 124 65 67
+```
+(Primera linea: posicion inicial, resto: solicitudes)
+
+### OPCION 5: ENTRADA/SALIDA
+1. Impresora - Procesa 4 trabajos con diferentes prioridades
+2. Buffer Compartido - Operaciones de lectura/escritura
+
+### OPCION 6: EJECUTAR SCRIPTS DE PRUEBA
+Ejecuta automaticamente todos los scripts en la carpeta scripts/
+Muestra resultados de:
+- Planificacion de procesos (Round Robin)
+- Algoritmos de memoria (LRU, FIFO, Working Set)
+- Algoritmos de disco (FCFS, SSTF, SCAN)
+
+## EJEMPLOS DE EJECUCION RAPIDA
+
+### Ejemplo 1: Comparar algoritmos de memoria
+```bash
+./os_simulator
+# Seleccionar: 2
+# Seleccionar: 4
+# Ingresar: 3 (marcos)
+```
+
+### Ejemplo 2: Comparar planificacion de disco
+```bash
+./os_simulator
+# Seleccionar: 4
+# Seleccionar: 4
+```
+
+### Ejemplo 3: Ver todos los resultados
+```bash
+./os_simulator
+# Seleccionar: 6
+```
+
+## LIMPIEZA
+
+Para eliminar archivos compilados:
+```bash
+make clean
+```
+
+## NOTAS IMPORTANTES
+
+1. El programa requiere g++ con C++17 y pthread
+2. Los scripts deben estar en la carpeta scripts/
+3. Puedes crear tus propios scripts siguiendo los formatos
+4. El programa muestra estadisticas detalladas automaticamente
+5. El informe tecnico ya esta generado: Informe_Tecnico_SO.docx
+
+## SOLUCION DE PROBLEMAS
+
+Si hay error de compilacion:
+```bash
+make clean
+make
+```
+
+Si falta g++:
+```bash
+sudo apt-get update
+sudo apt-get install g++
+```
+
+Si falta make:
+```bash
+sudo apt-get install make
+```
+
+## SALIDA DEL PROGRAMA
+
+Para salir del programa en cualquier momento:
+- Selecciona opcion 0 en el menu principal
+- O presiona Ctrl+C
+
+## ARCHIVOS GENERADOS
+
+- os_simulator: Ejecutable principal
+- obj/*.o: Archivos objeto (se pueden borrar con make clean)
+- Informe_Tecnico_SO.docx: Documento tecnico completo
