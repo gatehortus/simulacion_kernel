@@ -49,7 +49,11 @@ public:
     Process* getProcess(int pid);
     std::vector<Process*> getReadyProcesses();
     void printStatistics();
+
+    // 👇 NUEVO GETTER
+    const std::vector<Process*>& getProcesses() const { return processes; }
 };
+
 
 class RoundRobinScheduler {
 private:

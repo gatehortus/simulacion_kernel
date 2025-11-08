@@ -126,7 +126,7 @@ void RoundRobinScheduler::run() {
         
         if (readyQueue.empty()) {
             bool pending = false;
-            for (auto p : pm->processes) {
+            for (auto p : pm->getProcesses()) {
                 if (p->arrivalTime > pm->currentTime && p->state != ProcessState::TERMINATED) {
                     pending = true;
                     break;
@@ -155,7 +155,7 @@ void RoundRobinScheduler::run() {
             p->remainingTime--;
             
             // Actualizar tiempo de espera
-            for (auto proc : pm->processes) {
+            for (auto proc : pm->getProcesses()) {
                 if (proc->state == ProcessState::READY && proc->pid != p->pid) {
                     if (proc->arrivalTime <= pm->currentTime) {
                         proc->waitingTime++;
@@ -184,7 +184,7 @@ void SJFScheduler::run() {
     
     while (true) {
         std::vector<Process*> ready;
-        for (auto p : pm->processes) {
+        for (auto p : pm->getProcesses()) {
             if (p->arrivalTime <= pm->currentTime && p->state == ProcessState::READY) {
                 ready.push_back(p);
             }
@@ -192,7 +192,7 @@ void SJFScheduler::run() {
         
         if (ready.empty()) {
             bool pending = false;
-            for (auto p : pm->processes) {
+            for (auto p : pm->getProcesses()) {
                 if (p->arrivalTime > pm->currentTime && p->state != ProcessState::TERMINATED) {
                     pending = true;
                     break;
@@ -222,7 +222,7 @@ void SJFScheduler::run() {
             p->remainingTime--;
             
             // Actualizar tiempo de espera
-            for (auto proc : pm->processes) {
+            for (auto proc : pm->getProcesses()) {
                 if (proc->state == ProcessState::READY && proc->pid != p->pid) {
                     if (proc->arrivalTime <= pm->currentTime) {
                         proc->waitingTime++;
